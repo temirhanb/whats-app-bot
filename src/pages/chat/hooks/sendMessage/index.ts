@@ -4,6 +4,7 @@ import {useEffect} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {API_TOKEN_INSTANCE, API_URL, ID_INSTANCE} from "../../../../constants";
 import {IParseString, IUserData, useMessageStore} from "../../../../store";
+import {useAuthStore} from "../../../../store";
 
 const socket = io("localhost:3001");
 
@@ -20,7 +21,10 @@ export const useSendMessageHook = () => {
     reset
   } = useForm<IFormInput>();
 
+  const messages = useMessageStore((state) => state.messages);
+
   const {receiveNotificationMessage, sendMessage} = useMessageStore((state) => state);
+  const {number} = useAuthStore(state => state);
 
   const authData = localStorage.getItem("auth");
   const authParse: IParseString = JSON.parse(authData || "{}");
@@ -31,6 +35,7 @@ export const useSendMessageHook = () => {
     socket.on("connect", () => {
       console.log("connect");
     });
+
     socket.emit("auth", authParse);
 
     socket.on("disconnect", () => {
@@ -82,6 +87,8 @@ export const useSendMessageHook = () => {
     errors,
     handleSubmit,
     onSubmit,
+    number,
+    messages,
     userParse
   };
 };

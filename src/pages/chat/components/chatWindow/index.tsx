@@ -3,13 +3,10 @@ import {Button, styled, TextField} from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 
 import {useSendMessageHook} from "../../hooks";
-import {useMessageStore} from "../../../../store";
 
 export const ChatWindow: React.FC = () => {
 
-  const {onSubmit, handleSubmit, errors, register, userParse} = useSendMessageHook();
-
-  const messages = useMessageStore((state) => state.messages);
+  const {onSubmit, handleSubmit, errors, register, messages, number, userParse} = useSendMessageHook();
 
   return (
     <Container>
@@ -19,7 +16,7 @@ export const ChatWindow: React.FC = () => {
       </Chat>
       <FormSendingMessage onSubmit={handleSubmit(onSubmit)}>
         <TextField
-          disabled={!userParse.number}
+          disabled={!userParse.number && number.length === 0}
           fullWidth
           size={"small"}
           error={errors.text && true}
@@ -29,7 +26,7 @@ export const ChatWindow: React.FC = () => {
             maxLength: {value: 500, message: "Max length message 500"}
           })}
         />
-        <Button disabled={!userParse.number} type={"submit"}>
+        <Button disabled={!userParse.number && number.length === 0} type={"submit"}>
           <SendIcon/>
         </Button>
 

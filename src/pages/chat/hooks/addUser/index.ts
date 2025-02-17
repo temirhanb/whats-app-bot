@@ -1,4 +1,5 @@
 import {SubmitHandler, useForm} from "react-hook-form";
+import {useAuthStore} from "../../../../store";
 
 interface IFormInput {
   number: string;
@@ -11,9 +12,10 @@ export const useAddUserHook = () => {
     handleSubmit,
     reset
   } = useForm<IFormInput>();
-
+  const {setNumber} = useAuthStore(state => state);
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     localStorage.setItem("user", JSON.stringify(data));
+    setNumber(data.number);
     reset({number: ""});
   };
 

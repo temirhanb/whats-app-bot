@@ -1,5 +1,14 @@
-# front
+## Installation
+
+```bash
+$ npm install
+```
+## Running the app
+
+```bash
+# frontend
 $ npm run start
 
-# back
+# backend
 $ npm run server
+
