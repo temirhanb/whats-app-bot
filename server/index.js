@@ -18,7 +18,6 @@ const io = new Server(server, {
     origin: "*"
   }
 });
-console.log(path.resolve(__dirname, "client", "dist", "index.html"), path.join(__dirname, "/client/dist"));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/dist")));

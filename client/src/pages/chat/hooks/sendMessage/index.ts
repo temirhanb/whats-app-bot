@@ -9,7 +9,7 @@ let socket;
 if (process.env.NODE_ENV === "development") {
   socket = io("localhost:3000");
 } else {
-  socket = io("https://whats-app-bot-fc9s.onrender.com:10000");
+  socket = io("https://whats-app-bot-fc9s.onrender.com");
 }
 
 interface IFormInput {
