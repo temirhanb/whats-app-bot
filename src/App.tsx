@@ -9,7 +9,6 @@ function App() {
       dark: true,
     },
   });
-
   return (
     <ThemeProvider theme={theme}>
       <Container>

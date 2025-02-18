@@ -1,18 +1,16 @@
-import {io} from "socket.io-client";
-import axios from "axios";
 import {useEffect} from "react";
+import {io} from "socket.io-client";
 import {SubmitHandler, useForm} from "react-hook-form";
-import {API_TOKEN_INSTANCE, API_URL, ID_INSTANCE} from "../../../../constants";
+
 import {IParseString, IUserData, useAuthStore, useMessageStore} from "../../../../store";
 
 let socket;
+
 if (process.env.NODE_ENV === "development") {
-  socket = io("localhost:3001");
+  socket = io("localhost:3000");
 } else {
   socket = io("https://mustangmidnight-jsy4rm--73342.stormkit.dev/");
 }
-
-// const socket = io("localhost:3001");
 
 interface IFormInput {
   text: string;
@@ -67,25 +65,32 @@ export const useSendMessageHook = () => {
 
     sendMessage(data);
 
+    socket.emit("sendMessage", {
+      idInstance: authParse.idInstance,
+      apiTokenInstance: authParse.apiTokenInstance,
+      number: userNumber.number,
+      message: data.text
+    });
+
     reset({text: ""});
-    return await axios.post(`${
-        authParse.apiUrl ?
-          authParse.apiUrl :
-          API_URL
-      }/waInstance${
-        authParse.idInstance ?
-          authParse.idInstance :
-          ID_INSTANCE
-      }/sendMessage/${
-        authParse.apiTokenInstance ?
-          authParse.apiTokenInstance :
-          API_TOKEN_INSTANCE
-      }`
-      , {
-        chatId: `${userNumber.number}@c.us`,
-        message: data.text
-      },
-    );
+    // return await axios.post(`${
+    //     authParse.apiUrl ?
+    //       authParse.apiUrl :
+    //       API_URL
+    //   }/waInstance${
+    //     authParse.idInstance ?
+    //       authParse.idInstance :
+    //       ID_INSTANCE
+    //   }/sendMessage/${
+    //     authParse.apiTokenInstance ?
+    //       authParse.apiTokenInstance :
+    //       API_TOKEN_INSTANCE
+    //   }`
+    //   , {
+    //     chatId: `${userNumber.number}@c.us`,
+    //     message: data.text
+    //   },
+    // );
   };
 
   return {
