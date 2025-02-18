@@ -23,10 +23,10 @@ const io = new Server(server, {
 });
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname1, "../dist")));
+  app.use(express.static(path.join(__dirname1, "dist/")));
 
   app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname1, "frontend", "dist", "index.html"))
+    res.sendFile(path.resolve(process.cwd(), "dist", "index.html"))
   );
 } else {
   app.get("/", (req, res) => {
