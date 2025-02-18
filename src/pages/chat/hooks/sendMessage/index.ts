@@ -9,7 +9,7 @@ let socket;
 if (process.env.NODE_ENV === "development") {
   socket = io("localhost:3001");
 } else {
-  socket = io("https://api.stormkit.io/hooks/app/14524/deploy/mmb5i5paslzc68s72ybpi99r6t0fipepnaxjdbc25zbofblg/15909");
+  socket = io("https://mustangmidnight-jsy4rm--73342.stormkit.dev/");
 }
 
 // const socket = io("localhost:3001");
