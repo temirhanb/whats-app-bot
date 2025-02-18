@@ -3,10 +3,16 @@ import axios from "axios";
 import {useEffect} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {API_TOKEN_INSTANCE, API_URL, ID_INSTANCE} from "../../../../constants";
-import {IParseString, IUserData, useMessageStore} from "../../../../store";
-import {useAuthStore} from "../../../../store";
+import {IParseString, IUserData, useAuthStore, useMessageStore} from "../../../../store";
 
-const socket = io("localhost:3001");
+let socket;
+if (process.env.NODE_ENV === "development") {
+  socket = io("localhost:3001");
+} else {
+  socket = io("https://api.stormkit.io/hooks/app/14524/deploy/mmb5i5paslzc68s72ybpi99r6t0fipepnaxjdbc25zbofblg/15909");
+}
+
+// const socket = io("localhost:3001");
 
 interface IFormInput {
   text: string;
