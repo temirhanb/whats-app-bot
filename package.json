@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon server/index.js port=3001",
     "start": "node server/index.js PORT=3001",
-    "build": "npm install --legacy-peer-deps && npm install --legacy-peer-deps --prefix client && npm run build --prefix client"
+    "build": "npm install --legacy-peer-deps && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
