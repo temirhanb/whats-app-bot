@@ -9,17 +9,6 @@ export const AuthForm: React.FC = () => {
     <FormContainer onSubmit={handleSubmit(onSubmit)}>
       <Typography variant={"h2"}>Authorisation</Typography>
       <TextField
-        label={"apiUrl"}
-        variant={"standard"}
-        error={errors.apiUrl && true}
-        helperText={errors.apiUrl && errors.apiUrl.message}
-        {...register("apiUrl", {
-          required: "apiUrl is required.",
-          minLength: {value: 4, message: "This input exceed min length."},
-          maxLength: {value: 500, message: "This input exceed max length."}
-        })}
-      />
-      <TextField
         label={"idInstance"}
         variant={"standard"}
         error={errors.idInstance && true}

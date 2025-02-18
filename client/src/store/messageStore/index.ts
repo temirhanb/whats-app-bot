@@ -1,7 +1,6 @@
 import {create} from "zustand/react";
 
 export interface IParseString {
-  apiUrl: string;
   idInstance: string;
   apiTokenInstance: string;
 }

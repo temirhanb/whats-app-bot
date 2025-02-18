@@ -2,7 +2,6 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {useNavigate} from "react-router";
 
 interface IFormInput {
-  apiUrl: string;
   apiTokenInstance: string;
   idInstance: string;
 }
