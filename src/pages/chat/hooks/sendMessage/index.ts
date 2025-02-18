@@ -55,6 +55,7 @@ export const useSendMessageHook = () => {
       socket.off("auth");
       socket.off("disconnect");
       socket.off("message");
+      socket.off("sendMessage");
     };
   }, []);
 
@@ -73,24 +74,6 @@ export const useSendMessageHook = () => {
     });
 
     reset({text: ""});
-    // return await axios.post(`${
-    //     authParse.apiUrl ?
-    //       authParse.apiUrl :
-    //       API_URL
-    //   }/waInstance${
-    //     authParse.idInstance ?
-    //       authParse.idInstance :
-    //       ID_INSTANCE
-    //   }/sendMessage/${
-    //     authParse.apiTokenInstance ?
-    //       authParse.apiTokenInstance :
-    //       API_TOKEN_INSTANCE
-    //   }`
-    //   , {
-    //     chatId: `${userNumber.number}@c.us`,
-    //     message: data.text
-    //   },
-    // );
   };
 
   return {
